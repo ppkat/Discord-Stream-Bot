@@ -1,7 +1,7 @@
 import Discord from 'discord.js'
 
 // Crie uma instância de WebhookClient usando o ID e o token do webhook
-const webhook = new Discord.WebhookClient({ url: 'https://discord.com/api/webhooks/1060342378466115667/ti3fYppr7vaq22vpxeu1NzNt8McGsQcpRu_RlVbyWDrCWoABmMVfrB-f-B7N5Wpo6dSZ' });
+const webhook = new Discord.WebhookClient({ url: process.env.WEEBHOOK_URL as string });
 
 // Crie um objeto de opções para a mensagem
 const embed = new Discord.EmbedBuilder()
