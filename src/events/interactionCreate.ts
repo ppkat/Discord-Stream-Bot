@@ -1,16 +1,17 @@
 import { CommandInteraction, Client, Interaction, ContextMenuCommandInteraction, ButtonInteraction } from "discord.js";
-import { Commands } from '../Commands'
+import getCommands from "../Commands";
 
-export default (client: Client): void => {
-    client.on("interactionCreate", async (interaction: Interaction) => {
-        if (interaction.isCommand() || interaction.isContextMenuCommand()) {
-            await handleSlashCommand(client, interaction);
-        }
-    });
+export default async (client: Client, interaction: Interaction): Promise<void> => {
+
+    if (interaction.isCommand() || interaction.isContextMenuCommand()) {
+        await handleSlashCommand(client, interaction);
+    }
 };
 
 const handleSlashCommand = async (client: Client, interaction: CommandInteraction | ContextMenuCommandInteraction): Promise<void> => {
-    const slashCommand = Commands.find(c => c.name === interaction.commandName);
+
+    const commandName = (await getCommands()).find(command => command.name === interaction.commandName)?.name
+    const slashCommand = (await import(`../commands/${commandName}`)).default
     if (!slashCommand) {
         interaction.followUp({ content: "An error has occurred" });
         return;

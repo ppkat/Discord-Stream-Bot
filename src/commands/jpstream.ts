@@ -2,7 +2,7 @@ import { CommandInteraction, Client, ActionRowBuilder, ButtonBuilder, ButtonStyl
 import { Command } from "../Command";
 import { streamAction, Action } from '../scripts/UIControls'
 
-export const jpstream: Command = {
+const jpstream: Command = {
     name: "jpstream",
     description: "Mostra os botões de controle da stream do jp",
     run: async (client: Client, interaction: CommandInteraction) => {
@@ -59,3 +59,5 @@ export const jpstream: Command = {
         reactionCollector.on('remove', handleInteractions)
     }
 };
+
+export default jpstream

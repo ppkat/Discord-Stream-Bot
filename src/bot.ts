@@ -1,6 +1,5 @@
 import { Client } from "discord.js";
-import interactionCreate from "./listeners/interactionCreate";
-import ready from "./listeners/ready";
+import eventHandle from "./eventHandle";
 import { config } from "dotenv";
 config()
 const token = process.env.BOT_TOKEN
@@ -11,7 +10,6 @@ const client = new Client({
     intents: [3276799]
 });
 
-ready(client);
-interactionCreate(client);
+eventHandle(client)
 
 client.login(token);
