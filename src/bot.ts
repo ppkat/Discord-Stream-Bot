@@ -1,6 +1,7 @@
 import { Client } from "discord.js";
 import eventHandle from "./eventHandle";
 import { config } from "dotenv";
+import waitGroupMessages from "./scripts/whatsApp/waitGroupMessages";
 config()
 const token = process.env.BOT_TOKEN
 
@@ -11,5 +12,6 @@ const client = new Client({
 });
 
 eventHandle(client)
+waitGroupMessages(client, 'grupinho')
 
 client.login(token);
